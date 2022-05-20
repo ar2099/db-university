@@ -1,0 +1,58 @@
+1 esercizio (RISPOSTA 68)
+    METODO 1
+        SELECT `students`.*
+        FROM `students` 
+        INNER JOIN `degrees` 
+        ON `students`.`degree_id` = `degrees`.`id`
+        WHERE `degrees`.`name` = 'Corso di Laurea in Economia'
+    METODO 2
+        SELECT *
+        FROM `students` 
+        LEFT JOIN `degrees` 
+        ON `students`.`degree_id` = `degrees`.`id`
+        WHERE `degrees`.`name` = 'Corso di Laurea in Economia'
+
+2 esercizio
+        SELECT *
+        FROM `departments` 
+        LEFT JOIN `degrees` 
+        ON `degrees`.`department_id` = `departments`.`id`
+        WHERE `departments`.`name` = 'Dipartimento di Neuroscienze' 
+        AND `degrees`.`level` = 'magistrale'    
+
+3 esercizio
+        SELECT * 
+        FROM `teachers` 
+        LEFT JOIN `course_teacher` ON `course_teacher`.`teacher_id` = `teachers`.`id` 
+        LEFT JOIN `courses` ON `course_teacher`.`course_id` = `courses`.`id`
+        WHERE `teachers`.`id` = '44' 
+        AND `course_teacher`.`teacher_id` = '44'
+
+
+4 esercizio 
+        SELECT `students`.*, `degrees`.*, `departments`.*
+        FROM `students` 
+	    LEFT JOIN `degrees` ON `students`.`degree_id` = `degrees`.`id` 
+	    LEFT JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
+        ORDER BY `students` . `surname`, `students` . `name`
+
+
+5 esercizio 
+        SELECT *
+        FROM `degrees` 
+        LEFT JOIN `courses` ON `courses`.`degree_id` = `degrees`.`id` 
+        LEFT JOIN `course_teacher` ON `course_teacher`.`course_id` = `courses`.`id` 
+        LEFT JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id`
+
+
+6 ESERCIZIO
+        SELECT `teachers` . `name`, `teachers` . `surname`
+        FROM `teachers` 
+            LEFT JOIN `course_teacher` ON `course_teacher`.`teacher_id` = `teachers`.`id` 
+            LEFT JOIN `courses` ON `course_teacher`.`course_id` = `courses`.`id` 
+            LEFT JOIN `degrees` ON `courses`.`degree_id` = `degrees`.`id` 
+            LEFT JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
+        WHERE `departments`.`name` = 'Dipartimento di Matematica'
+        GROUP BY name, surname
+
+
